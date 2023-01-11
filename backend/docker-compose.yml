@@ -5,25 +5,25 @@ networks:
     driver: bridge
 
 services:
-  # db:
-  #   image: mysql:latest
-  #   command: --default-authentication-plugin=mysql_native_password
-  #   restart: unless-stopped
-  #   environment:
-  #     TZ: America/Sao_Paulo
-  #     MYSQL_ALLOW_EMPTY_PASSWORD: ok
-  #     MYSQL_ROOT_PASSWORD: root
-  #     MYSQL_USER: docker
-  #     MYSQL_PASSWORD: docker
-  #     MYSQL_DATABASE: alfred_bot
-  #   expose:
-  #     - "3308"
-  #   ports:
-  #     - "3308:3308"
-  #   volumes:
-  #     - ./init:/docker-entrypoint-initdb.d
-  #   networks:
-  #     - app-tier
+  db:
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    restart: unless-stopped
+    environment:
+      TZ: America/Sao_Paulo
+      MYSQL_ALLOW_EMPTY_PASSWORD: ok
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+      MYSQL_DATABASE: alfred_bot
+    expose:
+      - "3308"
+    ports:
+      - "3308:3308"
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+    networks:
+      - app-tier
 
   alfred-bot:
     container_name: alfred-bot-new
@@ -32,20 +32,20 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     volumes:
-      - ./src:/alfred-bot-new/backend/src
+      - ./src:/alfred-bot-new/src
     ports:
       - "3000:3000"
-    # depends_on:
-    #   - db
+    depends_on:
+      - db
     #command: bash -c 'while !</dev/tcp/db/3306; do sleep 1; done; pm2 start src/main.js --node-args='--es-module-specifier-resolution=node' --name alfred-bot && pm2-runtime start src/httpCtrl.js --node-args='--es-module-specifier-resolution=node' --name alfred-bot'
     networks:
       - app-tier
 
-  # web:
-  #   image: nginx:latest
-  #   ports:
-  #     - "8080:80"
-  #   volumes:
-  #     - ./src:/usr/share/nginx/html
-  #   networks:
-  #     - app-tier
+  web:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/usr/share/nginx/html
+    networks:
+      - app-tier

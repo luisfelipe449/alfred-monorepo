@@ -38,7 +38,7 @@ export const venomOptions = {
     "--no-sandbox",
   ], //Original parameters  ---Parameters to be added into the chrome browser instance
   puppeteerOptions: {
-    //executablePath: "/usr/lib/chromium/",
+    executablePath: "/usr/lib/chromium/chrome",
     args: [
       "--disable-gpu",
       "--disable-setuid-sandbox",

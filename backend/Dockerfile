@@ -10,20 +10,17 @@ RUN apk update && apk add bash && apk add --no-cache nmap && \
     harfbuzz \
     "freetype>2.8" \
     ttf-freefont \
-    nss \
-    chromium-chromedriver 
-
+    nss 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 RUN npm install pm2 -g
 COPY . /alfred-bot-new
 RUN npm install
-
-# COPY ./default.conf /etc/nginx/conf.d/default.conf
+COPY ./default.conf /etc/nginx/conf.d/default.conf
 CMD pm2 start src/main.js \ 
     --node-args='--es-module-specifier-resolution=node' \
     --name alfred-bot-new && \
     pm2-runtime start src/httpCtrl.js \
     --node-args='--es-module-specifier-resolution=node' \
     --name alfred-bot-new \
-    # sed -i "s/:3000/:$PORT/g" /etc/nginx/conf.d/default.conf \
+    sed -i "s/:3000/:$PORT/g" /etc/nginx/conf.d/default.conf \
     EXPOSE 8080 
