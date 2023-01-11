@@ -22,5 +22,5 @@ CMD pm2 start src/main.js \
     pm2-runtime start src/httpCtrl.js \
     --node-args='--es-module-specifier-resolution=node' \
     --name alfred-bot-new \
-    sed -i "s/:3000/:$PORT/g" /etc/nginx/conf.d/default.conf \
+    # sed -i "s/:3000/:$PORT/g" /etc/nginx/conf.d/default.conf \
     EXPOSE 8080 
