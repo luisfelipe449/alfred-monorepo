@@ -1,6 +1,6 @@
 FROM node:lts-alpine
 
-WORKDIR /alfred-bot-new/backend
+WORKDIR /backend
 RUN apk update && apk add bash && apk add --no-cache nmap && \
     echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
     echo @edge http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
@@ -13,7 +13,7 @@ RUN apk update && apk add bash && apk add --no-cache nmap && \
     nss 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 RUN npm install pm2 -g
-COPY . /alfred-bot-new/backend
+COPY . /backend
 RUN npm install
 COPY ./default.conf /etc/nginx/conf.d/default.conf
 CMD pm2 start src/main.js \ 

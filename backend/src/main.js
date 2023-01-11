@@ -2,7 +2,7 @@
 
 // import schedule from "node-schedule";
 import { session, log } from "./core";
-import conversation from "./conversations/conversation";
+//import conversation from "./conversations/conversation";
 import conversation1 from "./conversations/conversation1.js";
 // import conversation2 from './conversations/conversation2.js';
 
@@ -36,5 +36,5 @@ try {
   /* ---------------------------*/
 } catch (error) {
   console.log("error", error.toString());
-  log("Error", `${error.toString()} Please try restart de bot.`);
+  log("Error", `${error.toString()} Please try restarting the bot`);
 }
