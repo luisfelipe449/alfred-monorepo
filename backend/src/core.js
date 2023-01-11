@@ -8,8 +8,7 @@ import mime from "mime-types";
 import { getPedidos } from "../repositories/pedidoRepository";
 import * as path from "path";
 import { fileURLToPath } from "url";
-
-const port = process.env.PORT || 8080;
+import cors from "cors";
 
 /**
  * Logging debug
@@ -140,30 +139,29 @@ export async function session(name, conversation) {
  * @param {String} name
  * @param {Number} port
  */
-export async function httpCtrl(name, port) {
+export async function httpCtrl(name, port = process.env.PORT || 8080) {
+  const app = express();
+  app.use(cors());
   if (!fs.existsSync("logs")) {
     fs.mkdirSync("logs", { recursive: true });
     fs.writeFileSync("logs/conversations.log", "");
   }
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
-  const app = express();
   app.use(express.static(path.join(__dirname, "dist/frontend")));
-  app.use("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "dist/frontend/index.html"));
+  app.use("/index", function (req, res) {
+    //res.sendFile(path.join(__dirname, "dist/frontend/index.html"));
+    const buffer = fs.readFileSync(
+      path.join(__dirname, "dist/frontend/index.html")
+    );
+    let html = buffer.toString();
+    res.send(html);
   });
   app.listen(port, () => {
     console.log(
       `[${name}] Http chatbot control running on http://localhost:${port}/`
     );
   });
-
-  // const httpServer = http.createServer(app);
-  // httpServer.listen(port, () => {
-  //   console.log(
-  //     `\x1b[32minfo\x1b[39m:     [${name}] Http chatbot control running on http://localhost:${port}/`
-  //   );
-  // });
   // const authorize = (req, res) => {
   //   const reject = () => {
   //     res.setHeader("www-authenticate", "Basic");
@@ -189,12 +187,6 @@ export async function httpCtrl(name, port) {
   //     return reject();
   //   }
   // };
-  // app.get("/", (req, res, next) => {
-  //   authorize(req, res);
-  //   const buffer = fs.readFileSync("src/httpCtrl.html");
-  //   let html = buffer.toString();
-  //   res.send(html);
-  // });
   app.get("/api/data", (req, res, next) => {
     //authorize(req, res);
     const infoPath = `tokens/${name}/info.json`;

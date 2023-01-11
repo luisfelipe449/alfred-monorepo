@@ -10,15 +10,23 @@ import { ConfiguracaoComponent } from './configuracao/configuracao.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CurrencyFormatPipe } from '../utils/pipes/currency-format.pipe';
 import { SecaoComponent } from './configuracao/secao/secao.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [AtendimentosComponent, PaginaInicialComponent, RelatoriosComponent, ConfiguracaoComponent, CurrencyFormatPipe, SecaoComponent],
+  declarations: [
+    AtendimentosComponent,
+    PaginaInicialComponent,
+    RelatoriosComponent,
+    ConfiguracaoComponent,
+    CurrencyFormatPipe,
+    SecaoComponent,
+  ],
   imports: [
     CommonModule,
     PagesRoutingModule,
     CoreModule,
-    FontAwesomeModule
-  ]
+    FontAwesomeModule,
+    HttpClientModule,
+  ],
 })
-export class PagesModule { }
+export class PagesModule {}
