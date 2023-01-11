@@ -40,7 +40,7 @@ export const venomOptions = {
   puppeteerOptions: {
     args: ["--no-sandbox"],
   }, // Will be passed to puppeteer.launch. Use --no-sandbox with Docker
-  executablePath: "/usr/bin/chromium-browser", // Custom executable path if you don't want to use the installed chromium
+  //executablePath: "/usr/bin/chromium-browser", // Custom executable path if you don't want to use the installed chromium
   disableSpins: true, // Will disable Spinnies animation, useful for containers (docker) for a better log
   disableWelcome: true, // Will disable the welcoming message which appears in the beginning
   updatesLog: true, // Logs info updates automatically in terminal
