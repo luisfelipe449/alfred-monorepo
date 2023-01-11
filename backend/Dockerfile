@@ -15,7 +15,39 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 RUN npm install pm2 -g
 COPY . /alfred-bot-new
 RUN npm install
-COPY ./default.conf /etc/nginx/conf.d/default.conf
+# Download and unpack Chrome
+RUN set -ex && \
+	curl -SL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o /google-chrome-stable_current_amd64.deb && \
+	dpkg -x /google-chrome-stable_current_amd64.deb google-chrome-stable && \
+	mv /google-chrome-stable/usr/bin/* /usr/bin && \
+	mv /google-chrome-stable/usr/share/* /usr/share && \
+	mv /google-chrome-stable/etc/* /etc && \
+	mv /google-chrome-stable/opt/* /opt && \
+	rm -r /google-chrome-stable
+
+# Install Chrome dependencies
+RUN apk add --no-cache --update \
+	alsa-lib \
+	atk \
+	at-spi2-atk \
+	expat \
+	glib \
+	gtk+3.0 \
+	libdrm \
+	libx11 \
+	libxcomposite \
+	libxcursor \
+	libxdamage \
+	libxext \
+	libxi \
+	libxrandr \
+	libxscrnsaver \
+	libxshmfence \
+	libxtst \
+	mesa-gbm \
+	nss \
+	pango
+# COPY ./default.conf /etc/nginx/conf.d/default.conf
 CMD pm2 start src/main.js \ 
     --node-args='--es-module-specifier-resolution=node' \
     --name alfred-bot-new && \
