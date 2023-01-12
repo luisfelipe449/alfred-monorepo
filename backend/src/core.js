@@ -139,20 +139,20 @@ export async function session(name, conversation) {
  * @param {String} name
  * @param {Number} port
  */
-export async function httpCtrl(name, port = process.env.PORT || 8080) {
+export async function httpCtrl(name, port = 3000) {
   const app = express();
   app.use(cors());
-  if (!fs.existsSync("logs")) {
-    fs.mkdirSync("logs", { recursive: true });
-    fs.writeFileSync("logs/conversations.log", "");
-  }
+  // if (!fs.existsSync("logs")) {
+  //   fs.mkdirSync("logs", { recursive: true });
+  //   fs.writeFileSync("logs/conversations.log", "");
+  // }
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
-  app.use(express.static(path.join(__dirname, "dist/frontend")));
+  app.use(express.static(path.join(__dirname, "dist")));
   app.use("/index", function (req, res) {
     //res.sendFile(path.join(__dirname, "dist/frontend/index.html"));
     const buffer = fs.readFileSync(
-      path.join(__dirname, "dist/frontend/index.html")
+      path.join(__dirname, "dist/index.html")
     );
     let html = buffer.toString();
     res.send(html);

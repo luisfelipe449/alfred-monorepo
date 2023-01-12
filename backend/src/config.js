@@ -1,10 +1,9 @@
 /**
  * Chatbot options
  */
-const port = process.env.PORT || 8080;
 export const chatbotOptions = {
   httpCtrl: {
-    port: port, // httpCtrl port (http://localhost:3000/)
+    port: process.env.PORT || 3000, // httpCtrl port (http://localhost:3000/)
     username: "admin",
     password: "chatbot",
   },
