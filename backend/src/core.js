@@ -162,31 +162,6 @@ export async function httpCtrl(name, port = process.env.PORT || 8080) {
       `[${name}] Http chatbot control running on http://localhost:${port}/`
     );
   });
-  // const authorize = (req, res) => {
-  //   const reject = () => {
-  //     res.setHeader("www-authenticate", "Basic");
-  //     res.sendStatus(401);
-  //   };
-  //   const authorization = req.headers.authorization;
-  //   if (!authorization) {
-  //     return reject();
-  //   }
-  //   const [username, password] = Buffer.from(
-  //     authorization.replace("Basic ", ""),
-  //     "base64"
-  //   )
-  //     .toString()
-  //     .split(":");
-
-  //   if (
-  //     !(
-  //       username === chatbotOptions.httpCtrl.username &&
-  //       password === chatbotOptions.httpCtrl.password
-  //     )
-  //   ) {
-  //     return reject();
-  //   }
-  // };
   app.get("/api/data", (req, res, next) => {
     //authorize(req, res);
     const infoPath = `tokens/${name}/info.json`;
@@ -212,6 +187,31 @@ export async function httpCtrl(name, port = process.env.PORT || 8080) {
       logs: logs,
     });
   });
+  // const authorize = (req, res) => {
+  //   const reject = () => {
+  //     res.setHeader("www-authenticate", "Basic");
+  //     res.sendStatus(401);
+  //   };
+  //   const authorization = req.headers.authorization;
+  //   if (!authorization) {
+  //     return reject();
+  //   }
+  //   const [username, password] = Buffer.from(
+  //     authorization.replace("Basic ", ""),
+  //     "base64"
+  //   )
+  //     .toString()
+  //     .split(":");
+
+  //   if (
+  //     !(
+  //       username === chatbotOptions.httpCtrl.username &&
+  //       password === chatbotOptions.httpCtrl.password
+  //     )
+  //   ) {
+  //     return reject();
+  //   }
+  // };
   app.get("/api/connection", async (req, res, next) => {
     //authorize(req, res);
     const connectionPath = `tokens/${name}/connection.json`;
