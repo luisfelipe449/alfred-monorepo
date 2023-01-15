@@ -3,7 +3,7 @@
  */
 export const chatbotOptions = {
   httpCtrl: {
-    port: process.env.PORT || 3000, // httpCtrl port (http://localhost:3000/)
+    port: process.env.PORT || 3001, // httpCtrl port (http://localhost:3000/)
     username: "admin",
     password: "chatbot",
   },

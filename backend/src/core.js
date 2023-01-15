@@ -139,7 +139,7 @@ export async function session(name, conversation) {
  * @param {String} name
  * @param {Number} port
  */
-export async function httpCtrl(name, port = 3000) {
+export async function httpCtrl(name, port) {
   const app = express();
   app.use(cors());
   // if (!fs.existsSync("logs")) {
