@@ -23,4 +23,4 @@ CMD pm2 start src/main.js \
     --node-args='--es-module-specifier-resolution=node' \
     --name alfred-bot-new \
     sed -i "s/:3000/:$PORT/g" /etc/nginx/conf.d/ \
-    EXPOSE 3000
+    EXPOSE 3001
