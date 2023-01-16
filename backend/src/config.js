@@ -37,13 +37,13 @@ export const venomOptions = {
     "--no-sandbox",
   ], //Original parameters  ---Parameters to be added into the chrome browser instance
   puppeteerOptions: {
-    executablePath: "/usr/lib/chromium/",
+    //executablePath: "/usr/lib/chromium/",
     args: [
       "--disable-gpu",
       "--disable-setuid-sandbox",
       "--no-sandbox",
-      "--no-zygote",
-      "--use-gl=egl",
+      //"--no-zygote",
+      //"--use-gl=egl",
     ],
   }, // Will be passed to puppeteer.launch. Use --no-sandbox with Docker
   //executablePath: "/usr/lib/chromium/", // Custom executable path if you don't want to use the installed chromium
