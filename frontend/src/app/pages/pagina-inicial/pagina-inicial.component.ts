@@ -9,6 +9,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class PaginaInicialComponent implements OnInit {
   qrCode: any;
+  showQrCode = false;
 
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) {}
 
@@ -18,5 +19,27 @@ export class PaginaInicialComponent implements OnInit {
         data.qr.base64Qr
       );
     });
+  }
+
+  start() {
+    this.http.get<any>('/api/controls/start').subscribe((data) => {
+      console.log(data);
+    });
+  }
+
+  stop() {
+    this.http.get<any>('/api/controls/stop').subscribe((data) => {
+      console.log(data);
+    });
+  }
+
+  restart() {
+    this.http.get<any>('/api/controls/restart').subscribe((data) => {
+      console.log(data);
+    });
+  }
+
+  show() {
+    this.showQrCode = true;
   }
 }

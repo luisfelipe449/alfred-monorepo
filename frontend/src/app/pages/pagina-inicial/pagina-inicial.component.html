@@ -1,9 +1,24 @@
 <app-template>
   <div class="container">
-    <h2>Tarumã Peixaria</h2>
+    <br />
+    <div class="box sidebar2">
+      <h2>Controles</h2>
+      <button (click)="start()" id="start">Start</button>
+      <button (click)="stop()" id="stop">Stop</button>
+      <button (click)="restart()" id="restart">Restart</button>
+    </div>
     <br />
     <h2>Escaneie para ligar o bot:</h2>
+    <button (click)="showQrCode = !showQrCode">Mostrar QR Code</button>
     <br />
-    <img [src]="qrCode" alt="Image Source" />
+    <img
+      *ngIf="
+        showQrCode && qrCode !== null && qrCode !== '' && qrCode !== undefined;
+        else showThis
+      "
+      [src]="qrCode"
+      alt="Image Source"
+    />
+    <ng-template #showThis>Ligando os motores...Tente novamente</ng-template>
   </div>
 </app-template>
