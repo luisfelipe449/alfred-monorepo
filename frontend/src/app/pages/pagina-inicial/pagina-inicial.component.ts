@@ -10,6 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class PaginaInicialComponent implements OnInit {
   qrCode: any;
   showQrCode = false;
+  status: any;
 
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) {}
 
@@ -18,6 +19,10 @@ export class PaginaInicialComponent implements OnInit {
       this.qrCode = this.sanitizer.bypassSecurityTrustResourceUrl(
         data.qr.base64Qr
       );
+    });
+
+    this.http.get<any>('/api/connection').subscribe((data) => {
+      this.status = data.status;
     });
   }
 
