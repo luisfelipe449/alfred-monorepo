@@ -9,7 +9,7 @@ export default [
     id: 1,
     parent: 0,
     pattern: /.*/,
-    message: "Olá! Sou o Alfred 🤖.",
+    message: "Olá! Sou o Alfred 2🤖.",
     description: "Como posso te ajudar?",
     buttons: buttons([
       "Site",
@@ -34,7 +34,7 @@ export default [
     id: 7,
     parent: 6, // Relation with id: 6
     pattern: /.*/, // Match with all text
-    message: "Obrigado! Atenciosamente, Alfred 🤖 !",
+    message: "Obrigado! Atenciosamente, Alfred 2🤖 !",
     end: true,
   },
 ];
