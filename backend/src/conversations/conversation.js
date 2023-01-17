@@ -1,5 +1,12 @@
 import { buttons } from "../helpers";
-import { getAllMessages } from "alfred-bot-new/src/repositories/messageRepository";
+//import { getAllMessages } from "../repositories/messageRepository.js";
+import { Messages } from "../models/message.model.js";
+
+export const getAllMessages = async () => {
+  const messages = await Messages.findAll();
+  console.log(messages);
+  return messages;
+};
 
 /**
  * Chatbot conversation flow
