@@ -1,5 +1,5 @@
 {
-  "name": "jfa-whatsapp-chatbot",
+  "name": "alfred-chatbot",
   "version": "0.0.1",
   "description": "WhatsApp Chatbot",
   "type": "module",
@@ -23,13 +23,6 @@
     "conversations": "tail -f logs/conversations.log",
     "test": "jest"
   },
-  "repository": "git@github.com:jfadev/jfa-whatsapp-chatbot.git",
-  "bugs": {
-    "url": "https://github.com/jfadev/jfa-whatsapp-chatbot/issues"
-  },
-  "homepage": "https://github.com/jfadev/jfa-whatsapp-chatbot#readme",
-  "author": "Jordi Fernandes Alves <jfadev@gmail.com>",
-  "license": "MIT",
   "keywords": [
     "nodejs",
     "whatsapp",
