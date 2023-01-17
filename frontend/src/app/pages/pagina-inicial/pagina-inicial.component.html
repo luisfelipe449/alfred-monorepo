@@ -9,15 +9,13 @@
     </div>
     <br />
     <h2>Escaneie para ligar o bot:</h2>
-    <button (click)="showQrCode = !showQrCode">Mostrar QR Code</button>
+    <!-- <button (click)="showQrCode = !showQrCode">Mostrar QR Code</button> -->
     <br />
-    <img
-      *ngIf="showQrCode && getQrCode() !== ''; else showThis"
-      [src]="qrCode"
-      alt="Image Source"
-    />
+    <img *ngIf="getQrCode(); else showThis" [src]="qrCode" alt="Image Source" />
     <ng-template #showThis
-      ><p>Status: {{ status }}<span id="status" class="data"></span></p
+      ><p>
+        Status: {{ status == "CONNECTED" ? "CONECTADO" : "DESCONECTADO"
+        }}<span id="status" class="data"></span></p
     ></ng-template>
   </div>
 </app-template>
