@@ -1,5 +1,5 @@
 import { buttons } from "../helpers";
-import { getAllMessages } from "../../repositories/messageRepository";
+import { getAllMessages } from "../repositories/messageRepository";
 
 /**
  * Chatbot conversation flow
