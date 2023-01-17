@@ -15,15 +15,7 @@ export class PaginaInicialComponent implements OnInit {
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
-    this.http.get<any>('/api/data').subscribe((data) => {
-      this.qrCode = this.sanitizer.bypassSecurityTrustResourceUrl(
-        data.qr.base64Qr
-      );
-    });
-
-    this.http.get<any>('/api/connection').subscribe((data) => {
-      this.status = data.status;
-    });
+    this.getQrCode();
   }
 
   start() {
@@ -46,5 +38,25 @@ export class PaginaInicialComponent implements OnInit {
 
   show() {
     this.showQrCode = true;
+  }
+
+  getStatus() {
+    this.http.get<any>('/api/connection').subscribe((data) => {
+      this.status = data.status;
+    });
+
+    return this.status;
+  }
+
+  getQrCode() {
+    this.http.get<any>('/api/data').subscribe((data) => {
+      this.qrCode = this.sanitizer.bypassSecurityTrustResourceUrl(
+        data.qr.base64Qr
+      );
+    });
+
+    this.getStatus();
+
+    return this.qrCode;
   }
 }

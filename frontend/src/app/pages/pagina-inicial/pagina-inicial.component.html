@@ -12,13 +12,12 @@
     <button (click)="showQrCode = !showQrCode">Mostrar QR Code</button>
     <br />
     <img
-      *ngIf="
-        showQrCode && qrCode !== null && qrCode !== '' && qrCode !== undefined;
-        else showThis
-      "
+      *ngIf="showQrCode && getQrCode() !== ''; else showThis"
       [src]="qrCode"
       alt="Image Source"
     />
-    <ng-template #showThis><p>Status: {{ status }}<span id="status" class="data"></span></p></ng-template>
+    <ng-template #showThis
+      ><p>Status: {{ status }}<span id="status" class="data"></span></p
+    ></ng-template>
   </div>
 </app-template>
