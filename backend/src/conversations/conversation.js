@@ -1,6 +1,6 @@
 import { buttons } from "../helpers";
 //import { getAllMessages } from "../repositories/messageRepository.js";
-import { Messages } from "../models/message.model.js";
+import { Messages } from "./message.model";
 
 export const getAllMessages = async () => {
   const messages = await Messages.findAll();
