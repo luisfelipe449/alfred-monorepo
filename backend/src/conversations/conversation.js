@@ -1,12 +1,12 @@
 import { buttons } from "../helpers";
-import { getMessages } from "../../repositories/messageRepository";
+import { getAllMessages } from "../../repositories/messageRepository";
 
 /**
  * Chatbot conversation flow
  * Your custom conversation
  */
 
-const messages = await getMessages();
+const messages = await getAllMessages();
 const array = [];
 
 for (const message of messages) {
