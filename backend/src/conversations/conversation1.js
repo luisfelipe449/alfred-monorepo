@@ -27,7 +27,7 @@ export default [
   {
     id: 3,
     parent: 1, // Relation with id: 1
-    pattern: /deixe/,
+    pattern: /.*deixe.*/,
     message: "Escreva sua mensagem!",
   },
   {

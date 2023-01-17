@@ -20,45 +20,38 @@ export class PaginaInicialComponent implements OnInit {
         data.qr.base64Qr
       );
     });
-  }
 
-  start() {
-    this.http.get<any>('/api/controls/start').subscribe((data) => {
-      console.log(data);
-    });
-  }
-
-  stop() {
-    this.http.get<any>('/api/controls/stop').subscribe((data) => {
-      console.log(data);
-    });
-  }
-
-  restart() {
-    this.http.get<any>('/api/controls/restart').subscribe((data) => {
-      console.log(data);
-    });
-  }
-
-  show() {
-    this.showQrCode = true;
+    this.getStatus();
   }
 
   getStatus() {
     this.http.get<any>('/api/connection').subscribe((data) => {
       this.status = data.status;
     });
-
-    return this.status;
   }
 
-  getQrCode() {
-    if (this.status === 'CONNECTED') {
-      this.showQrCode = false;
-      return false;
-    } else {
-      this.showQrCode = true;
-      return true;
-    }
+  start() {
+    this.http.get<any>('/api/controls/start').subscribe((data) => {
+      console.log(data);
+      window.location.reload();
+    });
+  }
+
+  stop() {
+    this.http.get<any>('/api/controls/stop').subscribe((data) => {
+      console.log(data);
+      window.location.reload();
+    });
+  }
+
+  restart() {
+    this.http.get<any>('/api/controls/restart').subscribe((data) => {
+      console.log(data);
+      window.location.reload();
+    });
+  }
+
+  show() {
+    this.showQrCode = true;
   }
 }
