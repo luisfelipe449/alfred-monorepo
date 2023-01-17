@@ -32,7 +32,7 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     volumes:
-      - ./src:/backend/src
+      - ./src:/alfred-bot-new/src
     ports:
       - "3001:3001"
     # depends_on:
