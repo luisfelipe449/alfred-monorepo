@@ -222,7 +222,7 @@ export async function httpCtrl(name, port) {
   });
   app.get("/api/controls/start", (req, res, next) => {
     //authorize(req, res);
-    exec("yarn start", (err, stdout, stderr) => {
+    exec("npm run start", (err, stdout, stderr) => {
       if (err) {
         res.json({ status: "ERROR" });
         console.error(err);
@@ -235,7 +235,7 @@ export async function httpCtrl(name, port) {
   });
   app.get("/api/controls/stop", (req, res, next) => {
     //authorize(req, res);
-    exec("yarn stop", (err, stdout, stderr) => {
+    exec("npm run stop", (err, stdout, stderr) => {
       if (err) {
         res.json({ status: "ERROR" });
         console.error(err);
@@ -248,7 +248,7 @@ export async function httpCtrl(name, port) {
   });
   app.get("/api/controls/reload", (req, res, next) => {
     //authorize(req, res);
-    exec("yarn reload", (err, stdout, stderr) => {
+    exec("npm run reload", (err, stdout, stderr) => {
       if (err) {
         res.json({ status: "ERROR" });
         console.error(err);
@@ -261,7 +261,7 @@ export async function httpCtrl(name, port) {
   });
   app.get("/api/controls/restart", (req, res, next) => {
     //authorize(req, res);
-    exec("yarn restart", (err, stdout, stderr) => {
+    exec("npm run restart", (err, stdout, stderr) => {
       if (err) {
         res.json({ status: "ERROR" });
         console.error(err);
