@@ -1,6 +1,7 @@
-// import { Messages } from "../models/message.model.js";
+import { Messages } from "../models/message.model.js";
 
-// export const getMessages = async () => {
-//   const messages = await Messages.findAll();
-//   return messages;
-// };
+export const getMessages = async () => {
+  const messages = await Messages.findAll();
+  console.log(messages);
+  return messages;
+};
